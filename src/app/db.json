@@ -1,0 +1,164 @@
+{
+  "users": [
+    {
+      "id": "ec6d",
+      "firstName": "jayakumar",
+      "email": "vjayakumar@gmail.com",
+      "phone": 2345678111,
+      "password": "jayakuumar"
+    },
+    {
+      "id": "7d51",
+      "firstName": "muthukumar",
+      "lastName": "v",
+      "email": "muthu@gmail.com",
+      "phone": 1234567899,
+      "password": "muthu2001"
+    },
+    {
+      "id": "c0c3",
+      "firstName": "jaykumar",
+      "email": "kumar@gmail.com",
+      "phone": 2348888821,
+      "password": "kumar117",
+      "otp": 913834,
+      "isVerified": "true"
+    },
+    {
+      "id": "a695",
+      "firstName": "mathesh",
+      "email": "mathesh@gmail.com",
+      "phone": 4567822229,
+      "password": "mathesh2002",
+      "otp": 7127,
+      "isVerified": true
+    },
+    {
+      "id": "0aec",
+      "firstName": "fazilkhan",
+      "email": "fazil@gmail.com",
+      "phone": 4567894567,
+      "password": "fazilkhan",
+      "otp": 606962,
+      "isVerified": true
+    },
+    {
+      "id": "b666",
+      "firstName": "irfan",
+      "email": "irfan@gmail.com",
+      "phone": 3456789777,
+      "password": "irfan2002",
+      "otp": 767178,
+      "isVerified": "false"
+    },
+    {
+      "id": "aa5e",
+      "firstName": "kumar",
+      "email": "kumarj@gmail.com",
+      "phone": 8976357223,
+      "password": "kumar2003",
+      "otp": 328537,
+      "isVerified": "true"
+    },
+    {
+      "id": "4c1b",
+      "firstName": "muthubalasudhan",
+      "email": "muthubalan@gmail.com",
+      "phone": 3456789888,
+      "password": "harish123",
+      "otp": 465995,
+      "isVerified": true
+    },
+    {
+      "id": "81e9",
+      "firstName": "harish",
+      "email": "harish@gmail.com",
+      "phone": 2345678942,
+      "password": "harish2001",
+      "otp": 111121,
+      "isVerified": true
+    },
+    {
+      "id": "f97c",
+      "firstName": "jayakumarv",
+      "email": "vjaya@gmail.com",
+      "phone": 4567896789,
+      "password": "jayakumar2003",
+      "otp": 388007,
+      "isVerified": true
+    },
+    {
+      "id": "7449",
+      "firstName": "Jayakumarv",
+      "email": "vjayakumar850@gmail.com",
+      "phone": 8988007882,
+      "password": "kumar2003",
+      "otp": 353214,
+      "isVerified": true
+    },
+    {
+      "id": "2e5e",
+      "firstName": "vasantha",
+      "email": "vasantha@gmail.com",
+      "phone": 3456789777,
+      "password": "vasanthav",
+      "otp": 433388,
+      "isVerified": true
+    },
+    {
+      "id": "b543",
+      "firstName": "JayakumarV",
+      "email": "kumar18@gmail.com",
+      "phone": 7358906751,
+      "password": "jayakumar18",
+      "otp": 138032,
+      "isVerified": true
+    },
+    {
+      "id": "458c",
+      "firstName": "venkatesan",
+      "email": "venkatesan@gmail.com",
+      "phone": 9600648589,
+      "password": "venkatesan1965",
+      "otp": 346862,
+      "isVerified": true
+    },
+    {
+      "id": "5c00",
+      "firstName": "kumaran",
+      "lastName": "v",
+      "email": "kumaran@gmail.com",
+      "phone": 7008258259,
+      "password": "kumaran2003",
+      "otp": 839790,
+      "isVerified": true
+    },
+    {
+      "id": "da45",
+      "firstName": "murugan",
+      "email": "murugan@gmail.com",
+      "phone": 9982720261,
+      "password": "gurusundar",
+      "otp": 452019,
+      "isVerified": true
+    },
+    {
+      "id": "93c6",
+      "firstName": "balamurugan",
+      "email": "bala@gmail.com",
+      "phone": 9726539719,
+      "password": "bala2002",
+      "otp": 613741,
+      "isVerified": true
+    },
+    {
+      "id": "3f17",
+      "firstName": "Jayakumar",
+      "email": "kumarv@gmail.com",
+      "phone": 9872697254,
+      "password": "JAYA@2003",
+      "otp": 901091,
+      "isVerified": true
+    }
+  ]
+}
