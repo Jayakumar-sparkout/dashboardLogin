@@ -32,6 +32,7 @@ import { fa } from "zod/v4/locales"
     const [conPassErr,setConPassErr] = useState<boolean>(false)
     const [btnShow,setBtnShow] = useState<boolean>(true)
     const router = useRouter();
+    const [compare,setCompare] = useState<boolean>(true)
     const emailID = localStorage.getItem('userEmail')
     const handleResetPassword = async(e:any)=>{
       e.preventDefault()
@@ -42,6 +43,7 @@ import { fa } from "zod/v4/locales"
             setTimeout(()=>{
               setBtnShow(true)
              toast("Make sure both password are same!", {
+                  position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -72,7 +74,8 @@ import { fa } from "zod/v4/locales"
           setTimeout(()=>{
                 setBtnShow(true)
                 
-            toast("Something went wrong!", {
+            toast("User Not Exist!", {
+                  position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -87,9 +90,12 @@ import { fa } from "zod/v4/locales"
        
         }
         console.log('response',data)
+        router.push('/dashboard')
         setTimeout(()=>{
+           
           setBtnShow(true)
             toast("Successfully update the password!", {
+                  position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -97,13 +103,14 @@ import { fa } from "zod/v4/locales"
           },
         }
       )
-      router.push('/login')
+     
         },4000)
   }     
        }catch(error:any){
               setTimeout(()=>{
                 
             toast("Something went wrong!", {
+              position:'top-right' ,
           description:'',
           action: {
             label: "Undo",
@@ -171,7 +178,7 @@ import { fa } from "zod/v4/locales"
                 
                 
                                    {passErr===true &&(
-                                        <p className="text-red-500">
+                                        <p className="text-red-500 text-sm">
                                           Enter the Password Max 6 length
                                         </p>
                                           )
@@ -186,6 +193,15 @@ import { fa } from "zod/v4/locales"
                                   value={confirmPassword}
                                   onChange={(e)=>{
                                     const passValue = e.target.value;
+
+                                    const isVarify = password===passValue
+
+                                    if(isVarify===true){
+                                      setCompare(true)
+                                    }
+                                    else{
+                                      setCompare(false)
+                                    }
                                     setConfirmPassword(passValue)
                 
                                     if (passValue.length < 6){
@@ -202,15 +218,24 @@ import { fa } from "zod/v4/locales"
                 
                 
                                    {conPassErr===true &&(
-                                        <p className="text-red-500">
+                                        <p className="text-red-500 text-sm">
                                           Enter the Password Max 6 length
                                         </p>
                                           )
                                           }
+
+
+                                     {
+                                      compare === false && (
+                                        <p className="text-red-500 text-sm">Make sure both password are same!</p>
+                                      )
+                                     }     
                 </div>
+
+
                 </div>
                 {btnShow ===true  && (
-                <Button type="submit" className="w-full cursor-pointer" disabled={ !password || passErr || !confirmPassword || conPassErr} onClick={(e)=>handleResetPassword(e)}>
+                <Button type="submit" className="w-full cursor-pointer" disabled={ !password || passErr || !confirmPassword || !compare  || conPassErr} onClick={(e)=>handleResetPassword(e)}>
                   Change
                 </Button>
                 )}

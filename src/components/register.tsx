@@ -50,15 +50,7 @@ export function RegisterForm({
     return true;
   }
 
-// useEffect(()=>{
-//   toast("Successfully Create the Account!", {
-//           description: "Welcome ",
-//           action: {
-//             label: "Undo",
-//             onClick: () => console.log("Undo"),
-//           },
-//         })
-// },[sonner])
+
 
 
   const handleRegister =async()=>{
@@ -79,9 +71,11 @@ const result = await fetch('http://localhost:3001/users',{
 if(result.ok){
   const data =result.json()
   console.log('registerData',data)
+   router.push("/login")
   setTimeout(()=>{
 
   toast("Successfully Create the Account!", {
+        position:'top-right',
           description: "Welcome ",
           action: {
             label: "Undo",
@@ -95,12 +89,22 @@ if(result.ok){
   setRegPassword('')
   setRegPhone()
   setRegLoading(false)
-  router.push("/login")
-  },5000)
+ 
+  },4000)
 }
 }catch(error:any){
 console.log('errorMessage',error.message)
-toast.error('error',error.message)
+    setTimeout(()=>{
+
+  toast("something went wrong", {
+         position:'top-right',
+          description: "Welcome",
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        })
+  },4000)
 }
 
   }

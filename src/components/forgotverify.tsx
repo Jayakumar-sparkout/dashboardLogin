@@ -58,6 +58,7 @@ import { json } from "stream/consumers"
         setSendBtn(true)
         setEmailVerify(false)
         toast("We've sent a verification code to your email address!", {
+              position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -75,7 +76,8 @@ import { json } from "stream/consumers"
         setSendBtn(false)
         setEmailVerify(false)
         setBtnShow(true)
-          toast("Something went wrong", {
+          toast("User Not Exist, Please Enter the Valid Email", {
+                position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -116,17 +118,18 @@ import { json } from "stream/consumers"
               console.log('response2',isVerification)
               console.log(data)
               if(!isVerification.ok){
-                throw new Error('Something went wrong')
+                throw new Error('Enter the Valid OTP')
               }
 
                 setEmailVerify(true)
                 setSendBtn(false)
-
+                  router.push('/resetpassword')
                 setTimeout(()=>{
                   setEmailVerify(false)
                   setSendBtn(true)
-                  router.push('/resetpassword')
+                 
                 toast("successfully verified your email", {
+                      position:'top-right',
                 description:'',
                 action: {
                   label: "Undo",
@@ -144,6 +147,7 @@ import { json } from "stream/consumers"
                   setSendBtn(true)
                 
                 toast("Enter the Valid OTP and Email!", {
+                  position:'top-right',
                 description:'',
                 action: {
                   label: "Undo",
@@ -154,7 +158,8 @@ import { json } from "stream/consumers"
           }
       }catch(error:any){
             
-              toast("something went wrong", {
+              toast(error.message, {
+                    position:'top-right',
                 description:'',
                 action: {
                   label: "Undo",
@@ -207,8 +212,13 @@ import { json } from "stream/consumers"
           <Label htmlFor="verification-code" className="mb-4">Verification Code</Label>      
                 <InputOTP maxLength={6}
                 value={otp}
-                className="mt-5"
-                onChange={setOtp}
+                onChange={(value) => {
+              
+                const onlyNumbers = value.replace(/[^0-9]/g, "");
+                setOtp(onlyNumbers);
+              }}
+              type="text"
+              inputMode="numeric"
                 >
                 <InputOTPGroup>
                     <InputOTPSlot index={0}

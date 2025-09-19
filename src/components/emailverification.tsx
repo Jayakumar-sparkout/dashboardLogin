@@ -62,17 +62,18 @@ import { useState } from "react"
       const updateData = await updateRes.json();
       console.log("finialRes2", updateData);
       localStorage.setItem('userEmail',updateData.email)
-     
+       router.push('/dashboard')
       setTimeout(()=>{
        
       toast("Successfully verified email!", {
+            position:'top-right',
           description:'',
           action: {
             label: "Undo",
             onClick: () => console.log("Undo"),
           },
         })
-       router.push('/dashboard')
+      
        setEmailVerify(false)
         
       },4000)
@@ -80,6 +81,7 @@ import { useState } from "react"
     } else {
       setEmailVerify(false)
         toast("Invalid OTP!", {
+              position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -93,7 +95,8 @@ import { useState } from "react"
       setEmailVerify(false)
     console.error("Error:", error.message);
     setEmailVerify(false)
-    toast("Something went wrong", {
+    toast("User Not Exist", {
+          position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -119,34 +122,46 @@ import { useState } from "react"
       <form className="space-y-4">
         <div>
           <Label htmlFor="verification-code " className="mb-5">Verification Code</Label>      
-                <InputOTP maxLength={6}
+               <InputOTP maxLength={6}
                 value={otp}
                 className="mt-5"
-                onChange={setOtp}
+                onChange={(value) => {
+                const onlyNumbers = value.replace(/[^0-9]/g, "");
+                setOtp(onlyNumbers);
+              }}
+              type="text"
+              inputMode="numeric"
                 >
+
+
                 <InputOTPGroup>
                     <InputOTPSlot index={0}
-                    
                     />
                     <InputOTPSlot index={1} />
                 </InputOTPGroup>
                 <InputOTPSeparator />
                 <InputOTPGroup>
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={2}   />
+                    <InputOTPSlot index={3}  />
                 </InputOTPGroup>
                 <InputOTPSeparator />
                 <InputOTPGroup>
                     <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
+                    <InputOTPSlot index={5}  />
                 </InputOTPGroup>
                 </InputOTP>
+             
+
+
                      
                 
          </div>
          {emailVerify===false && (
         <Button  className="w-full cursor-pointer"
-        onClick={(e)=> handleEmailVerify(e)}
+        onClick={(e)=> handleEmailVerify(e)
+         
+        }
+        disabled={otp?.toString().length !== 6}
          >
           Verify Email
         </Button>

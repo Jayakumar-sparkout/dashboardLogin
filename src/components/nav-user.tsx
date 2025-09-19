@@ -1,5 +1,7 @@
 "use client"
-
+import { useRouter } from "next/navigation"
+import { Toaster } from "./ui/sonner"
+import { toast } from "sonner"
 import {
   IconCreditCard,
   IconDotsVertical,
@@ -40,6 +42,10 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
 
+  const router = useRouter()
+
+ const userName = localStorage.getItem('loginName')
+ const LoginEmail = localStorage.getItem('userEmail')
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -54,9 +60,9 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate font-medium">{userName}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                  {LoginEmail}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -100,7 +106,25 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <IconLogout />
-              Log out
+              <p 
+              className="cursor-pointer"
+              onClick={() => {
+            document.cookie = "auth=;";
+            
+               router.push('/login'); 
+
+               toast("You Have Successfully Logged out of the application", {
+                            position:'top-right',
+                        description:'',
+                        action: {
+                          label: "Undo",
+                          onClick: () => console.log("Undo"),
+                        },
+                      })
+           
+            console.log('logout!')
+          }}>LogOut</p>
+                        
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

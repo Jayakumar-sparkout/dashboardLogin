@@ -5,6 +5,8 @@ import { toast } from "sonner"
 import '../app/globals.css'
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { NextRequest } from "next/server"
+import { Toaster } from "./ui/sonner"
 import {
   Card,
   CardContent,
@@ -19,7 +21,7 @@ const variants: SpinnerProps['variant'][] = [
 ];
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
@@ -37,6 +39,9 @@ interface LoginFormProps extends React.ComponentProps<"div"> {
   const [loginLoading,setLoginLoading] = useState<boolean>(false)
   const [showLogin,setShowLogin] = useState<boolean>(true)
   const [loginName,setLoginName] = useState<string|undefined>(undefined)
+
+
+
 
  const handleLogin = async (e: any) => {
   setShowLogin(false);
@@ -61,6 +66,7 @@ interface LoginFormProps extends React.ComponentProps<"div"> {
      if(data.length===0){
      
       toast("Please Enter the Correct Email and Password", {
+            position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -83,9 +89,12 @@ interface LoginFormProps extends React.ComponentProps<"div"> {
     
 
     if(resId.isVerified==false){
+
+
       setTimeout(()=>{
 
          toast("Plz verify the EmailID!", {
+              position:'top-right',
           description:'',
           action: {
             label: "Undo",
@@ -106,22 +115,19 @@ interface LoginFormProps extends React.ComponentProps<"div"> {
 
     localStorage.setItem('loginUserId',resId.id)
 
+     localStorage.setItem('loginName',resId.firstName)
+
+     localStorage.setItem('loginEmail',resId.email)
+
+     console.log(resId.firstName)
+
     console.log('loginUserId',resId.id)
-
-if(resId.isVerified==true){
-    const user = data.find((item: any) => item.firstName);
+      
   
-    if (!user) {
-      toast.error("Invalid Email or Password");
-      setShowLogin(true);
-      setLoginLoading(false);
-      return;
-    }
+if(resId.isVerified==true){
 
-   
-    const { firstName, email: userEmail, id } = user;
-
-     console.log('loginEmail',userEmail)
+ document.cookie = `auth=users.${resId.id};`
+    //  console.log('loginEmail',userEmail)
 
     //  if(!user.ok){
     //   throw new Error('something went wrong')
@@ -129,23 +135,20 @@ if(resId.isVerified==true){
     //   setShowLogin(true)
     //  }
 
-    setTimeout(() => {
-      console.log("Logged in User:", firstName);
-      setLoginName(firstName);
 
-  
+      router.push('/dashboard')
+    setTimeout(() => {
       toast("User Login Successfully!", {
+            position:'top-right',
           description: `Welcome `,
           action: {
             label: "Undo",
             onClick: () => console.log("Undo"),
           },
         })
-
       setShowLogin(true);
       setEmail("");
-      setPassword("");
-      router.push("/dashboard");
+      setPassword("")
       setLoginLoading(false);
     }, 4000);
 }
@@ -163,7 +166,7 @@ if(resId.isVerified==true){
 
   return (
     <div className={cn("flex flex-col gap-6 mt-10", className)} {...props}>
-
+       
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>

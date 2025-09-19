@@ -159,6 +159,24 @@
       "password": "JAYA@2003",
       "otp": 901091,
       "isVerified": true
+    },
+    {
+      "id": "2390",
+      "firstName": "jayasuriya",
+      "email": "suriya@gmail.com",
+      "phone": 9876534565,
+      "password": "suriyakumar",
+      "otp": 515603,
+      "isVerified": true
+    },
+    {
+      "id": "867b",
+      "firstName": "ravishankar",
+      "email": "ravi@gmail.com",
+      "phone": 8302863763,
+      "password": "jayakumar",
+      "otp": 762234,
+      "isVerified": true
     }
   ]
 }
